@@ -25,6 +25,6 @@ add_action( 'after_setup_theme', 'roshni_setup' );
 
 function roshni_scripts() {
 	wp_enqueue_style( 'roshni-style', get_stylesheet_uri(), array(), '1.0' );
-	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap', array(), null );
+	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700;800&display=swap', array(), null );
 }
 add_action( 'wp_enqueue_scripts', 'roshni_scripts' );

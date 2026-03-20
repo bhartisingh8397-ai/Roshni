@@ -18,15 +18,18 @@ Text Domain: roshni
 }
 
 :root {
-    --primary: #007bb6; /* Blue from logo */
-    --secondary: #4caf50; /* Green from logo */
-    --accent: #ff9800; /* Orange from logo */
-    --sun: #ffc107; /* Yellow from logo */
-    --text-dark: #333;
+    --primary: #1a365d; /* Deep Sea Navy */
+    --secondary: #48bb78; /* Mint Green */
+    --accent: #4299e1; /* Sky Blue */
+    --sun: #f6ad55; 
+    --text-dark: #2d3748;
     --text-light: #fff;
-    --bg-light: #f4f7f6;
-    --shadow: 0 4px 20px rgba(0,0,0,0.1);
-    --transition: all 0.3s ease;
+    --bg-light: #f7fafc;
+    --glass: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -72,18 +75,30 @@ h1, h2, h3, h4 {
     align-items: center;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.logo img {
+    display: block;
+    transition: var(--transition);
+}
+
+.logo img:hover {
+    transform: scale(1.05);
 }
 
 .nav-menu ul {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-menu a {
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.nav-menu a:hover {
+    color: var(--primary);
 }
 
 .nav-menu a:hover {
@@ -162,13 +177,25 @@ section {
 }
 
 .card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
     transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-soft);
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: var(--shadow-medium);
+}
+
+.glass-panel {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: var(--shadow-medium);
 }
 
 .card h3 {

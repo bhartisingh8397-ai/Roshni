@@ -11,22 +11,18 @@
 <header class="site-header">
 	<div class="container header-container">
 		<div class="logo">
-			<?php 
-			if ( has_custom_logo() ) {
-				the_custom_logo();
-			} else {
-				echo '<span>Roshni Health Care</span>';
-			}
-			?>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="Roshni Health Care " style="max-height: 80px; width: auto;">
+			</a>
 		</div>
 		<nav class="nav-menu">
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-				'fallback_cb'    => false,
-			) );
-			?>
+			<ul>
+				<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/about' ) ); ?>">About</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/services' ) ); ?>">Services</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/blog' ) ); ?>">Blog</a></li>
+				<li><a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn btn-primary" style="color: #fff; padding: 10px 20px; font-size: 0.9rem;">Contact Us</a></li>
+			</ul>
 		</nav>
 	</div>
 </header>

@@ -9,13 +9,13 @@ if ( is_front_page() ) :
     ?>
     <main class="site-main">
         <!-- Hero Section -->
-        <section class="hero" style="background: linear-gradient(135deg, var(--primary) 0%, #004d70 100%); color: #fff; text-align: center; padding: 8rem 0;">
-            <div class="container">
-                <h1 style="font-size: 4rem; margin-bottom: 1rem;">Roshni Health Care</h1>
-                <p style="font-size: 1.5rem; opacity: 0.9;">Lighting the Path to Better Health</p>
-                <div style="margin-top: 2rem;">
-                    <a href="#services" class="btn btn-primary" style="background: var(--accent); border: none;">Explore Services</a>
-                    <a href="#contact" class="btn btn-primary" style="background: transparent; border: 2px solid #fff; margin-left: 1rem;">Contact Us</a>
+        <section class="hero" style="background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('<?php echo get_template_directory_uri(); ?>/images/hero-bg.png'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 12rem 0; position: relative;">
+            <div class="container" style="position: relative; z-index: 2;">
+                <h1 style="font-size: 4.5rem; margin-bottom: 2rem; font-family: 'Playfair Display', serif;">Roshni Health Care</h1>
+                <p style="font-size: 1.6rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">Lighting the Path to Better Health with Compassion & Care</p>
+                <div style="margin-top: 3rem;">
+                    <a href="#services" class="btn btn-primary" style="background: var(--secondary); border: none; padding: 15px 40px; font-size: 1.1rem;">Explore Services</a>
+                    <a href="#contact" class="btn btn-primary" style="background: transparent; border: 2px solid #fff; margin-left: 1.5rem; padding: 15px 40px; font-size: 1.1rem;">Get in Touch</a>
                 </div>
             </div>
         </section>
@@ -90,15 +90,78 @@ if ( is_front_page() ) :
             </div>
         </section>
 
-        <!-- Contact CTA -->
-        <section id="contact" style="background: var(--primary); color: #fff; text-align: center;">
+        <!-- Blog Section -->
+        <section id="latest-blog" style="background: #fff;">
             <div class="container">
-                <h2>Ready to Start Your Journey to Better Health?</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Visit us or call today to schedule a consultation.</p>
-                <div style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">
-                    <a href="tel:9588536580" style="color: var(--sun);">9588536580</a>
+                <div class="section-title">
+                    <h2>Latest from Our Blog</h2>
+                    <p>Health tips and news from Roshni Health Care</p>
                 </div>
-                <p>Sonepat Road, Gohana</p>
+                <div class="footer-grid">
+                    <?php
+                    $latest_posts = get_posts( array(
+                        'posts_per_page' => 3,
+                        'post_status'    => 'publish',
+                    ) );
+
+                    if ( $latest_posts ) :
+                        foreach ( $latest_posts as $post ) : setup_postdata( $post );
+                            ?>
+                            <article class="card" style="background: var(--bg-light); padding: 2rem; border-radius: 15px;">
+                                <h3 style="font-size: 1.25rem;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                                <div style="margin-bottom: 1rem; color: #666; font-size: 0.85rem;"><?php echo get_the_date(); ?></div>
+                                <div class="excerpt" style="font-size: 0.9rem;">
+                                    <?php the_excerpt(); ?>
+                                </div>
+                                <a href="<?php the_permalink(); ?>" style="color: var(--primary); font-weight: 700; margin-top: 1rem; display: inline-block;">Read More →</a>
+                            </article>
+                            <?php
+                        endforeach;
+                        wp_reset_postdata();
+                    else :
+                        ?>
+                        <div class="card" style="background: var(--bg-light); padding: 2rem; border-radius: 15px; grid-column: 1 / -1; text-align: center;">
+                            <p>No blog posts found yet. Start sharing your health expertise!</p>
+                        </div>
+                        <?php
+                    endif;
+                    ?>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="<?php echo esc_url( home_url( '/blog' ) ); ?>" class="btn btn-primary" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">View All Posts</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get in Touch Section -->
+        <section id="contact" style="background: var(--bg-light);">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions? We're here to help you on your path to better health.</p>
+                </div>
+                <div class="footer-grid" style="grid-template-columns: 1fr 1.5fr; gap: 4rem;">
+                    <div class="contact-sidebar">
+                        <div class="card" style="background: #fff; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                            <h3 style="color: var(--primary);">Visit Us</h3>
+                            <p>Sonepat Road, Gohana</p>
+                        </div>
+                        <div class="card" style="background: #fff; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                            <h3 style="color: var(--secondary);">Call Us</h3>
+                            <p><a href="tel:9588536580" style="color: var(--sun); font-weight: 800; font-size: 1.5rem;">9588536580</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-form-card" style="background: #fff; padding: 3rem; border-radius: 20px; box-shadow: var(--shadow);">
+                        <h3 style="margin-bottom: 1.5rem;">Send a Message</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <input type="text" placeholder="Your Name" style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                            <input type="email" placeholder="Your Email" style="padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                        </div>
+                        <input type="text" placeholder="Subject" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 1rem;">
+                        <textarea placeholder="Your Message" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 1rem;"></textarea>
+                        <button class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 15px;">Send Message</button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
